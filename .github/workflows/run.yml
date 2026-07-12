@@ -104,6 +104,7 @@ jobs:
         OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
         MODEL_NAME: ${{ vars.MODEL_NAME }}
       run: |
+        source .venv/bin/activate
         today=${{ steps.crawl_step.outputs.crawl_date }}
         python3 ai/filter_relevance.py \
           --data "data/${today}.jsonl" \
