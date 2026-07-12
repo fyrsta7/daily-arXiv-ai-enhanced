@@ -97,6 +97,18 @@ jobs:
                 ;;
         esac
         
+    - name: Filter cs.AI papers for SemOpt relevance
+      if: steps.dedup_check.outputs.has_new_content == 'true'
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+        MODEL_NAME: ${{ vars.MODEL_NAME }}
+      run: |
+        today=${{ steps.crawl_step.outputs.crawl_date }}
+        python3 ai/filter_relevance.py \
+          --data "data/${today}.jsonl" \
+          --report "data/${today}_filter_report.json"
+
     - name: AI Enhancement Processing
       if: steps.dedup_check.outputs.has_new_content == 'true'
       run: |
@@ -164,7 +176,8 @@ jobs:
           --date "$today" \
           --markdown "data/${today}.md" \
           --raw-jsonl "data/${today}.jsonl" \
-          --enhanced-jsonl "data/${today}_AI_enhanced_${LANGUAGE}.jsonl"
+          --enhanced-jsonl "data/${today}_AI_enhanced_${LANGUAGE}.jsonl" \
+          --filter-report "data/${today}_filter_report.json"
 
     - name: Update file list
       if: steps.dedup_check.outputs.has_new_content == 'true'
