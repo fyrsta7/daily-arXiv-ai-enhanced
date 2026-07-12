@@ -150,6 +150,22 @@ jobs:
         fi
         echo "Markdown转换完成 / Markdown conversion completed"
         
+    - name: Send complete digest by email
+      if: steps.dedup_check.outputs.has_new_content == true
+      env:
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        EMAIL_FROM: ${{ vars.EMAIL }}
+        EMAIL_TO: zhaoyuweiteddy@163.com
+        CATEGORIES: ${{ vars.CATEGORIES }}
+        LANGUAGE: ${{ vars.LANGUAGE }}
+      run: |
+        today=${{ steps.crawl_step.outputs.crawl_date }}
+        python3 send_email.py \
+          --date "$today" \
+          --markdown "data/${today}.md" \
+          --raw-jsonl "data/${today}.jsonl" \
+          --enhanced-jsonl "data/${today}_AI_enhanced_${LANGUAGE}.jsonl"
+
     - name: Update file list
       if: steps.dedup_check.outputs.has_new_content == 'true'
       run: |
