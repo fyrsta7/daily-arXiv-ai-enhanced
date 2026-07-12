@@ -117,6 +117,7 @@ def process_single_item(chain, item: Dict, language: str) -> Dict:
     """处理单个数据项"""
     # Default structure with meaningful fallback values
     default_ai_fields = {
+        "abstract_zh": "Abstract translation failed",
         "tldr": "Summary generation failed",
         "motivation": "Motivation analysis unavailable",
         "method": "Method extraction failed",
@@ -207,6 +208,7 @@ def process_all_items(data: List[Dict], model_name: str, language: str, max_work
                 # Add default AI fields to ensure consistency
                 processed_data[idx] = data[idx]
                 processed_data[idx]['AI'] = {
+                    "abstract_zh": "Processing failed",
                     "tldr": "Processing failed",
                     "motivation": "Processing failed",
                     "method": "Processing failed",
