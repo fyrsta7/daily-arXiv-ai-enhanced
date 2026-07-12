@@ -82,7 +82,13 @@ def main():
     base_url = os.environ["OPENAI_BASE_URL"]
     api_key = os.environ["OPENAI_API_KEY"]
     data_path = Path(args.data)
-    items = [json.loads(line) for line in data_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    raw_items = [json.loads(line) for line in data_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    items = []
+    seen_ids = set()
+    for item in raw_items:
+        if item["id"] not in seen_ids:
+            seen_ids.add(item["id"])
+            items.append(item)
 
     se_items = []
     ai_candidates = []
@@ -129,6 +135,7 @@ def main():
     report = {
         "model": model,
         "policy": "keep_all_cs.SE_and_semantically_filter_cs.AI_for_SemOpt",
+        "input_records": len(raw_items),
         "input_total": len(items),
         "cs.SE_kept": len(se_items),
         "cs.AI_candidates": len(ai_candidates),
