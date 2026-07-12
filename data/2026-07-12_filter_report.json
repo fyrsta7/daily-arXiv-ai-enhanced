@@ -8,15 +8,15 @@
   "output_total": 18,
   "filter_usage": {
     "prompt_tokens": 17266,
-    "completion_tokens": 4190,
-    "total_tokens": 21456
+    "completion_tokens": 5340,
+    "total_tokens": 22606
   },
   "cs.AI_decisions": [
     {
       "id": "2607.07721",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "关于企业主动agent，与代码优化无关"
+      "reason_zh": "企业代理主动推送，与代码优化无关"
     },
     {
       "id": "2607.07759",
@@ -34,7 +34,7 @@
       "id": "2607.07761",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "医学推理，与代码优化无关"
+      "reason_zh": "医学推理综述，与代码优化无关"
     },
     {
       "id": "2607.07766",
@@ -52,31 +52,31 @@
       "id": "2607.07836",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "文档解析多模态，与代码优化无关"
+      "reason_zh": "文档解析模型，与代码优化无关"
     },
     {
       "id": "2607.07846",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "教学助手，与代码优化无关"
+      "reason_zh": "教学辅助LLM，不涉及性能优化"
     },
     {
       "id": "2607.07850",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "手势识别，与代码优化无关"
+      "reason_zh": "手势识别GNN，与代码优化无关"
     },
     {
       "id": "2607.07858",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "保险承保agent，与代码优化无关"
+      "reason_zh": "承保AI，与代码优化无关"
     },
     {
       "id": "2607.07859",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "强化学习对齐，与代码优化无关"
+      "reason_zh": "模仿学习对齐，不聚焦代码优化"
     },
     {
       "id": "2607.07883",
@@ -88,43 +88,43 @@
       "id": "2607.07916",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "语言模型人格，与代码优化无关"
+      "reason_zh": "LLM人格研究，与代码优化无关"
     },
     {
       "id": "2607.07957",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "自闭症分类，与代码优化无关"
+      "reason_zh": "自闭症视频分类，与代码优化无关"
     },
     {
       "id": "2607.07984",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "神经网络架构搜索，非程序代码优化"
+      "reason_zh": "神经架构搜索，属于模型架构优化而非程序代码优化"
     },
     {
       "id": "2607.08018",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "推理增强，与代码优化无关"
+      "reason_zh": "提示推理改进，与代码优化无关"
     },
     {
       "id": "2607.08038",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "医疗诊断，与代码优化无关"
+      "reason_zh": "医疗诊断框架，与代码优化无关"
     },
     {
       "id": "2607.08065",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "模型一致性审计，与代码优化无关"
+      "reason_zh": "LLM一致性审计，与代码优化无关"
     },
     {
       "id": "2607.08066",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "攻击安全，与代码优化无关"
+      "reason_zh": "CoT监控安全性，与代码优化无关"
     },
     {
       "id": "2607.08079",
@@ -136,121 +136,121 @@
       "id": "2607.08093",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "因果推理数据科学基准，与代码性能优化无关"
+      "reason_zh": "因果推理基准，与代码优化无关"
     },
     {
       "id": "2607.08136",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "神经符号推理与ASP，与自动代码优化无关"
+      "reason_zh": "神经符号推理与ASP，非代码优化"
     },
     {
       "id": "2607.08173",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "思考放大提取秘密，非代码优化"
+      "reason_zh": "推理权重放大提取秘密，与代码优化无关"
     },
     {
       "id": "2607.08177",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "船舶报告写作agent，与代码优化无关"
+      "reason_zh": "船舶维护报告模式生成，非代码优化"
     },
     {
       "id": "2607.08196",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "慢思考理论，与自动代码优化无关"
+      "reason_zh": "慢思考与主动感知理论，与代码优化无关"
     },
     {
       "id": "2607.08233",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "视觉概念归纳agent，无关代码优化"
+      "reason_zh": "视觉概念归纳环境，非代码优化"
     },
     {
       "id": "2607.08252",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "人格演化循环，非代码优化"
+      "reason_zh": "角色演化引擎，与代码优化无关"
     },
     {
       "id": "2607.08255",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "代码教学agent，但重点在蒸馏与RLVR，非性能优化"
+      "reason_zh": "AI教师协作训练编码学生，侧重代码生成而非性能优化"
     },
     {
       "id": "2607.08257",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "精神科交互环境，无关"
+      "reason_zh": "精神病临床评估环境，非代码优化"
     },
     {
       "id": "2607.08268",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "结构化文本蒸馏，无关代码优化"
+      "reason_zh": "结构化文本蒸馏，非代码优化"
     },
     {
       "id": "2607.08269",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "Web RAG框架，无关"
+      "reason_zh": "结构感知Web RAG，与代码优化无关"
     },
     {
       "id": "2607.08284",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "长上下文推理基准，无关"
+      "reason_zh": "长上下文任务基准，非代码优化"
     },
     {
       "id": "2607.08285",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "AI心理能力评估，无关"
+      "reason_zh": "AI评估中的心理能力，与代码优化无关"
     },
     {
       "id": "2607.08316",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "车辆意图预测，无关"
+      "reason_zh": "车辆意图预测，非代码优化"
     },
     {
       "id": "2607.08317",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "多模态盲点评估，无关"
+      "reason_zh": "多模态模型盲点基准，与代码优化无关"
     },
     {
       "id": "2607.08357",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "移动数据生成，无关"
+      "reason_zh": "人类移动数据生成，非代码优化"
     },
     {
       "id": "2607.08368",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "联邦学习视觉提示，无关"
+      "reason_zh": "联邦学习视觉提示微调，非代码优化"
     },
     {
       "id": "2607.08393",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "知识记忆与泛化差距，无关代码优化"
+      "reason_zh": "LLM微调泛化失败机制，与代码优化无关"
     },
     {
       "id": "2607.08403",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "多agent减少幻觉，非代码优化"
+      "reason_zh": "多智能体框架减轻幻觉，非代码优化"
     },
     {
       "id": "2607.08423",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "VLM营养推理，无关"
+      "reason_zh": "食品营养推理评估，非代码优化"
     },
     {
       "id": "2607.08465",
@@ -262,79 +262,79 @@
       "id": "2607.08490",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "生物医学文本语义建模，非代码优化。"
+      "reason_zh": "生物医学文本语义漂移建模，与代码优化无关。"
     },
     {
       "id": "2607.08533",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "面部情绪感知研究，非代码优化。"
+      "reason_zh": "AI引导刺激生成用于自闭症情绪感知研究，与代码优化无关。"
     },
     {
       "id": "2607.08554",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "城市社区行为量化，非代码优化。"
+      "reason_zh": "城市社区非正式行为量化，与代码优化无关。"
     },
     {
       "id": "2607.08573",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "多模态情感识别，非代码优化。"
+      "reason_zh": "多模态情感识别融合，与代码优化无关。"
     },
     {
       "id": "2607.08602",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "临床LLM用于肝癌治疗，非代码优化。"
+      "reason_zh": "肝癌临床LLM决策支持，与代码优化无关。"
     },
     {
       "id": "2607.08625",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "病人对话AI，非代码优化。"
+      "reason_zh": "患者对话式AI复杂性，与代码优化无关。"
     },
     {
       "id": "2607.08652",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "多智能体市场稳定性，非代码优化。"
+      "reason_zh": "多智能体市场稳定性机制，非代码优化。"
     },
     {
       "id": "2607.08681",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "能源市场可信智能体基准，非代码优化。"
+      "reason_zh": "能源市场agent基准，与代码优化无关。"
     },
     {
       "id": "2607.08716",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "长时间任务记忆智能体，非代码性能优化。"
+      "reason_zh": "长时任务记忆agent，未涉及代码性能优化，属通用agent架构。"
     },
     {
       "id": "2607.08734",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "LLM量化效果表征，非代码优化。"
+      "reason_zh": "LLM量化行为分析，属模型推理优化，非程序代码优化。"
     },
     {
       "id": "2607.08745",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "自动驾驶VQA基准，非代码优化。"
+      "reason_zh": "自动驾驶VQA基准，与代码优化无关。"
     },
     {
       "id": "2607.08748",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "教育AI学习助手分析，非代码优化。"
+      "reason_zh": "教育AI学习助手使用分析，与代码优化无关。"
     },
     {
       "id": "2607.08758",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "科学思想谱系推理基准，非代码优化。"
+      "reason_zh": "科学思想谱系推理基准，与代码优化无关。"
     }
   ]
 }
