@@ -3,6 +3,8 @@
 
 Main category: {cate}
 
+Selection reason: {selection_reason}
+
 TL;DR: {tldr}
 
 
@@ -16,6 +18,8 @@ Result: {result}
 
 Conclusion: {conclusion}
 
-Abstract: {summary}
+中文摘要：{abstract_zh}
+
+Original abstract: {summary}
 
 </details>
