@@ -1,0 +1,340 @@
+{
+  "model": "ds/deepseek-v4-flash",
+  "policy": "keep_all_cs.SE_and_semantically_filter_cs.AI_for_SemOpt",
+  "input_total": 72,
+  "cs.SE_kept": 18,
+  "cs.AI_candidates": 54,
+  "cs.AI_kept": 0,
+  "output_total": 18,
+  "filter_usage": {
+    "prompt_tokens": 17266,
+    "completion_tokens": 4190,
+    "total_tokens": 21456
+  },
+  "cs.AI_decisions": [
+    {
+      "id": "2607.07721",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "关于企业主动agent，与代码优化无关"
+    },
+    {
+      "id": "2607.07759",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "农业韧性评估，与代码优化无关"
+    },
+    {
+      "id": "2607.07760",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "社会认识论，与代码优化无关"
+    },
+    {
+      "id": "2607.07761",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "医学推理，与代码优化无关"
+    },
+    {
+      "id": "2607.07766",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "医疗AI对齐，与代码优化无关"
+    },
+    {
+      "id": "2607.07775",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "智能假肢隐私，与代码优化无关"
+    },
+    {
+      "id": "2607.07836",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "文档解析多模态，与代码优化无关"
+    },
+    {
+      "id": "2607.07846",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "教学助手，与代码优化无关"
+    },
+    {
+      "id": "2607.07850",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "手势识别，与代码优化无关"
+    },
+    {
+      "id": "2607.07858",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "保险承保agent，与代码优化无关"
+    },
+    {
+      "id": "2607.07859",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "强化学习对齐，与代码优化无关"
+    },
+    {
+      "id": "2607.07883",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "工业数据集，与代码优化无关"
+    },
+    {
+      "id": "2607.07916",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "语言模型人格，与代码优化无关"
+    },
+    {
+      "id": "2607.07957",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "自闭症分类，与代码优化无关"
+    },
+    {
+      "id": "2607.07984",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "神经网络架构搜索，非程序代码优化"
+    },
+    {
+      "id": "2607.08018",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "推理增强，与代码优化无关"
+    },
+    {
+      "id": "2607.08038",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "医疗诊断，与代码优化无关"
+    },
+    {
+      "id": "2607.08065",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "模型一致性审计，与代码优化无关"
+    },
+    {
+      "id": "2607.08066",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "攻击安全，与代码优化无关"
+    },
+    {
+      "id": "2607.08079",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "光伏预测，与代码优化无关"
+    },
+    {
+      "id": "2607.08093",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "因果推理数据科学基准，与代码性能优化无关"
+    },
+    {
+      "id": "2607.08136",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "神经符号推理与ASP，与自动代码优化无关"
+    },
+    {
+      "id": "2607.08173",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "思考放大提取秘密，非代码优化"
+    },
+    {
+      "id": "2607.08177",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "船舶报告写作agent，与代码优化无关"
+    },
+    {
+      "id": "2607.08196",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "慢思考理论，与自动代码优化无关"
+    },
+    {
+      "id": "2607.08233",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "视觉概念归纳agent，无关代码优化"
+    },
+    {
+      "id": "2607.08252",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "人格演化循环，非代码优化"
+    },
+    {
+      "id": "2607.08255",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "代码教学agent，但重点在蒸馏与RLVR，非性能优化"
+    },
+    {
+      "id": "2607.08257",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "精神科交互环境，无关"
+    },
+    {
+      "id": "2607.08268",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "结构化文本蒸馏，无关代码优化"
+    },
+    {
+      "id": "2607.08269",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "Web RAG框架，无关"
+    },
+    {
+      "id": "2607.08284",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "长上下文推理基准，无关"
+    },
+    {
+      "id": "2607.08285",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "AI心理能力评估，无关"
+    },
+    {
+      "id": "2607.08316",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "车辆意图预测，无关"
+    },
+    {
+      "id": "2607.08317",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "多模态盲点评估，无关"
+    },
+    {
+      "id": "2607.08357",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "移动数据生成，无关"
+    },
+    {
+      "id": "2607.08368",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "联邦学习视觉提示，无关"
+    },
+    {
+      "id": "2607.08393",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "知识记忆与泛化差距，无关代码优化"
+    },
+    {
+      "id": "2607.08403",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "多agent减少幻觉，非代码优化"
+    },
+    {
+      "id": "2607.08423",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "VLM营养推理，无关"
+    },
+    {
+      "id": "2607.08465",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "网络指纹表示学习，与代码优化无关。"
+    },
+    {
+      "id": "2607.08490",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "生物医学文本语义建模，非代码优化。"
+    },
+    {
+      "id": "2607.08533",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "面部情绪感知研究，非代码优化。"
+    },
+    {
+      "id": "2607.08554",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "城市社区行为量化，非代码优化。"
+    },
+    {
+      "id": "2607.08573",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "多模态情感识别，非代码优化。"
+    },
+    {
+      "id": "2607.08602",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "临床LLM用于肝癌治疗，非代码优化。"
+    },
+    {
+      "id": "2607.08625",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "病人对话AI，非代码优化。"
+    },
+    {
+      "id": "2607.08652",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "多智能体市场稳定性，非代码优化。"
+    },
+    {
+      "id": "2607.08681",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "能源市场可信智能体基准，非代码优化。"
+    },
+    {
+      "id": "2607.08716",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "长时间任务记忆智能体，非代码性能优化。"
+    },
+    {
+      "id": "2607.08734",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "LLM量化效果表征，非代码优化。"
+    },
+    {
+      "id": "2607.08745",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "自动驾驶VQA基准，非代码优化。"
+    },
+    {
+      "id": "2607.08748",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "教育AI学习助手分析，非代码优化。"
+    },
+    {
+      "id": "2607.08758",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "科学思想谱系推理基准，非代码优化。"
+    }
+  ]
+}
