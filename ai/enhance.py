@@ -178,7 +178,10 @@ def process_all_items(data: List[Dict], model_name: str, language: str, max_work
         HumanMessagePromptTemplate.from_template(template=template)
     ])
 
-    chain = prompt_template | llm
+    chain = (prompt_template | llm).with_retry(
+        retry_if_exception_type=(langchain_core.exceptions.OutputParserException,),
+        stop_after_attempt=3,
+    )
     
     # 使用线程池并行处理
     processed_data = [None] * len(data)  # 预分配结果列表
