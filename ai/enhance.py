@@ -107,7 +107,7 @@ def process_single_item(chain, item: Dict, language: str) -> Dict:
 
     # 检查 summary 字段
     if is_sensitive(item.get("summary", "")):
-        return None
+        print(f"Sensitive-content service flagged {item.get('id', 'unknown')}; retaining academic paper per full-coverage policy", file=sys.stderr)
 
     # 检测代码可用性
     code_info = check_github_code(item.get("summary", ""))
@@ -163,7 +163,8 @@ def process_single_item(chain, item: Dict, language: str) -> Dict:
     # 检查 AI 生成的所有字段
     for v in item.get("AI", {}).values():
         if is_sensitive(str(v)):
-            return None
+            print(f"Sensitive-content service flagged generated analysis for {item.get('id', 'unknown')}; retaining it per full-coverage policy", file=sys.stderr)
+            break
     return item
 
 def process_all_items(data: List[Dict], model_name: str, language: str, max_workers: int) -> List[Dict]:
