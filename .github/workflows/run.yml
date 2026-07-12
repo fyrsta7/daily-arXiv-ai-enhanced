@@ -151,7 +151,7 @@ jobs:
         echo "Markdown转换完成 / Markdown conversion completed"
         
     - name: Send complete digest by email
-      if: steps.dedup_check.outputs.has_new_content == true
+      if: steps.dedup_check.outputs.has_new_content == 'true'
       env:
         SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         EMAIL_FROM: ${{ vars.EMAIL }}
