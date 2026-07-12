@@ -14,6 +14,7 @@ def parse_args():
     parser.add_argument("--markdown", required=True)
     parser.add_argument("--raw-jsonl", required=True)
     parser.add_argument("--enhanced-jsonl", required=True)
+    parser.add_argument("--filter-report", required=True)
     return parser.parse_args()
 
 
@@ -31,7 +32,7 @@ def main():
     password = required_env("SMTP_PASSWORD")
     categories = os.environ.get("CATEGORIES", "cs.SE")
 
-    paths = [Path(args.markdown), Path(args.raw_jsonl), Path(args.enhanced_jsonl)]
+    paths = [Path(args.markdown), Path(args.raw_jsonl), Path(args.enhanced_jsonl), Path(args.filter_report)]
     missing = [str(path) for path in paths if not path.is_file()]
     if missing:
         raise FileNotFoundError(f"Missing email attachments: {', '.join(missing)}")
@@ -52,6 +53,7 @@ def main():
     attachment_types = {
         ".md": ("text", "markdown"),
         ".jsonl": ("application", "json"),
+        ".json": ("application", "json"),
     }
     for path in paths:
         maintype, subtype = attachment_types[path.suffix]
