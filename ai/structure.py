@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field, field_validator
 import re
 
 class Structure(BaseModel):
+    abstract_zh: str = Field(description="a faithful complete Chinese translation of the original abstract")
     tldr: str = Field(description="generate a too long; didn't read summary")
     motivation: str = Field(description="describe the motivation in this paper")
     method: str = Field(description="method of this paper")
