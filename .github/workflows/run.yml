@@ -5,9 +5,8 @@ name: arXiv-daily-ai-enhanced
 
 on:
   schedule:
-    # Temporary near-time schedule for validating real scheduled email delivery.
-    - cron: "56 21 * * *"
-      timezone: "Asia/Shanghai"
+    # Temporary near-time UTC schedule for validating real scheduled email delivery.
+    - cron: "20 14 * * *"
   workflow_dispatch:
     inputs:
       send_email:
