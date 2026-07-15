@@ -4,14 +4,9 @@
 name: arXiv-daily-ai-enhanced
 
 on:
-  # One-shot validation trigger; remove after the email delivery test succeeds.
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/run.yml
   schedule:
-    - cron: "30 9 * * *"
+    # Temporary near-time schedule for validating real scheduled email delivery.
+    - cron: "56 21 * * *"
       timezone: "Asia/Shanghai"
   workflow_dispatch:
     inputs:
@@ -177,7 +172,7 @@ jobs:
         echo "Markdown转换完成 / Markdown conversion completed"
         
     - name: Send complete digest by email
-      if: steps.dedup_check.outputs.has_new_content == 'true' && (github.event_name == 'schedule' || github.event_name == 'push' || inputs.send_email == true)
+      if: steps.dedup_check.outputs.has_new_content == 'true' && (github.event_name == 'schedule' || inputs.send_email == true)
       env:
         SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         EMAIL_FROM: ${{ vars.EMAIL }}
