@@ -5,8 +5,8 @@ name: arXiv-daily-ai-enhanced
 
 on:
   schedule:
-    # Temporary verification schedule; restore to daily after one schedule event starts.
-    - cron: "*/5 * * * *"
+    # GitHub schedules use UTC: 01:30 UTC is 09:30 in Asia/Shanghai.
+    - cron: "30 1 * * *"
   workflow_dispatch:
     inputs:
       send_email:
@@ -186,6 +186,17 @@ jobs:
           --raw-jsonl "data/${today}.jsonl" \
           --enhanced-jsonl "data/${today}_AI_enhanced_${LANGUAGE}.jsonl" \
           --filter-report "data/${today}_filter_report.json"
+
+    - name: Send no-new-content status email
+      if: steps.dedup_check.outputs.has_new_content == 'false' && (github.event_name == 'schedule' || inputs.send_email == true)
+      env:
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        EMAIL_FROM: ${{ vars.EMAIL }}
+        EMAIL_TO: zhaoyuweiteddy@163.com
+        CATEGORIES: ${{ vars.CATEGORIES }}
+      run: |
+        today=${{ steps.crawl_step.outputs.crawl_date }}
+        python3 send_email.py --date "$today" --no-new-content
 
     - name: Update file list
       if: steps.dedup_check.outputs.has_new_content == 'true'

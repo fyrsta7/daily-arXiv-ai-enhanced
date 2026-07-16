@@ -11,10 +11,11 @@ from pathlib import Path
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", required=True)
-    parser.add_argument("--markdown", required=True)
-    parser.add_argument("--raw-jsonl", required=True)
-    parser.add_argument("--enhanced-jsonl", required=True)
-    parser.add_argument("--filter-report", required=True)
+    parser.add_argument("--markdown")
+    parser.add_argument("--raw-jsonl")
+    parser.add_argument("--enhanced-jsonl")
+    parser.add_argument("--filter-report")
+    parser.add_argument("--no-new-content", action="store_true")
     return parser.parse_args()
 
 
@@ -32,7 +33,39 @@ def main():
     password = required_env("SMTP_PASSWORD")
     categories = os.environ.get("CATEGORIES", "cs.SE")
 
-    paths = [Path(args.markdown), Path(args.raw_jsonl), Path(args.enhanced_jsonl), Path(args.filter_report)]
+    if args.no_new_content:
+        message = EmailMessage()
+        message["From"] = sender
+        message["To"] = recipient
+        message["Subject"] = f"[Daily arXiv] {args.date} 今日无新论文"
+        message.set_content(
+            f"今日的 Daily arXiv 任务已正常运行。\n"
+            f"在去重后没有发现新的 {categories} 论文，因此今天没有论文附件。\n\n"
+            f"在线阅读：https://fyrsta7.github.io/daily-arXiv-ai-enhanced/\n"
+        )
+
+        with smtplib.SMTP_SSL("smtp.163.com", 465, timeout=60) as smtp:
+            smtp.login(sender, password)
+            refused = smtp.send_message(message)
+            if refused:
+                raise RuntimeError(f"SMTP refused recipients: {', '.join(refused)}")
+
+        print(f"No-new-content email accepted by smtp.163.com for {recipient}")
+        return
+
+    attachment_args = [
+        args.markdown,
+        args.raw_jsonl,
+        args.enhanced_jsonl,
+        args.filter_report,
+    ]
+    if any(value is None for value in attachment_args):
+        raise ValueError(
+            "Digest emails require --markdown, --raw-jsonl, --enhanced-jsonl, "
+            "and --filter-report"
+        )
+
+    paths = [Path(value) for value in attachment_args]
     missing = [str(path) for path in paths if not path.is_file()]
     if missing:
         raise FileNotFoundError(f"Missing email attachments: {', '.join(missing)}")
