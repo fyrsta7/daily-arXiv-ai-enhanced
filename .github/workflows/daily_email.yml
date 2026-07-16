@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: arXiv-daily-ai-enhanced
+name: arXiv-daily-email
 
 on:
   workflow_dispatch:
@@ -40,13 +40,14 @@ jobs:
         local_date=$(TZ=Asia/Shanghai date +%F)
         cutoff=$(date -u -d "${local_date} 00:00:00 +0800" +%Y-%m-%dT%H:%M:%SZ)
         existing=$(gh api \
-          "repos/${GITHUB_REPOSITORY}/actions/workflows/311574107/runs?per_page=100" \
+          "repos/${GITHUB_REPOSITORY}/actions/runs?per_page=100" \
           | jq -c \
               --arg cutoff "$cutoff" \
               --argjson current_run "${GITHUB_RUN_ID}" \
               '[.workflow_runs[]
                 | select(.id != $current_run)
                 | select(.created_at >= $cutoff)
+                | select(.name == "arXiv-daily-ai-enhanced" or .name == "arXiv-daily-email")
                 | select(.event == "schedule" or .event == "workflow_dispatch")
                 | select(.status == "completed" and .conclusion == "success")]
                | sort_by(.created_at)
