@@ -1,0 +1,209 @@
+{
+  "model": "ds/deepseek-v4-flash",
+  "policy": "keep_all_cs.SE_and_semantically_filter_cs.AI_for_SemOpt",
+  "input_records": 59,
+  "input_total": 50,
+  "cs.SE_kept": 18,
+  "cs.AI_candidates": 32,
+  "cs.AI_kept": 18,
+  "output_total": 36,
+  "filter_usage": {
+    "prompt_tokens": 10307,
+    "completion_tokens": 3424,
+    "total_tokens": 13731
+  },
+  "cs.AI_decisions": [
+    {
+      "id": "2607.13037",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "数据溯源系统，与LLM agent或代码优化无关。"
+    },
+    {
+      "id": "2607.13049",
+      "relevant": true,
+      "score": 0.6,
+      "reason_zh": "提出多智能体工作流框架SPINE用于机器人调试，可迁移至通用agent协作与调试。"
+    },
+    {
+      "id": "2607.13069",
+      "relevant": true,
+      "score": 0.5,
+      "reason_zh": "LLM推理依赖审计方法，对agent推理评估有启发。"
+    },
+    {
+      "id": "2607.13073",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "神经符号AGI理论扩展，与agent实践无关。"
+    },
+    {
+      "id": "2607.13104",
+      "relevant": true,
+      "score": 0.85,
+      "reason_zh": "自我改进agent综述，直接覆盖agent架构与自适应方法。"
+    },
+    {
+      "id": "2607.13115",
+      "relevant": true,
+      "score": 0.55,
+      "reason_zh": "小语言模型结合工具使用的agent框架，可迁移至一般agent工具调用。"
+    },
+    {
+      "id": "2607.13157",
+      "relevant": true,
+      "score": 0.8,
+      "reason_zh": "Oracle Agent Memory作为长程agent记忆基板，直接涉及agent记忆系统设计。"
+    },
+    {
+      "id": "2607.13172",
+      "relevant": true,
+      "score": 0.7,
+      "reason_zh": "从人类偏好与理由学习安全agent行为，涉及世界模型与偏好学习，可迁移至agent训练。"
+    },
+    {
+      "id": "2607.13219",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "数学谜题求解包，与agent或代码优化无关。"
+    },
+    {
+      "id": "2607.13220",
+      "relevant": true,
+      "score": 0.65,
+      "reason_zh": "Mycelium多用户共享上下文系统，涉及多agent协作与上下文路由。"
+    },
+    {
+      "id": "2607.13230",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "AI原生保险框架，非agent方法。"
+    },
+    {
+      "id": "2607.13239",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "模型部署组合优化，与agent方法无关。"
+    },
+    {
+      "id": "2607.13292",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "理论级自动形式化，与coding agent弱相关，侧重NLP。"
+    },
+    {
+      "id": "2607.13344",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "约束求解器，与agent无关。"
+    },
+    {
+      "id": "2607.13501",
+      "relevant": true,
+      "score": 0.75,
+      "reason_zh": "自生成过程奖励方法LAPO用于多轮搜索推理agent，直接相关agent训练与推理。"
+    },
+    {
+      "id": "2607.13548",
+      "relevant": true,
+      "score": 0.7,
+      "reason_zh": "结构化多智能体根因分析管道，涉及多agent协作与推理能力分析。"
+    },
+    {
+      "id": "2607.13558",
+      "relevant": true,
+      "score": 0.65,
+      "reason_zh": "UrbanAgent多智能体协作推理框架，结合工具与强化学习，可迁移至一般agent。"
+    },
+    {
+      "id": "2607.13562",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "人类决策行为研究，与agent方法无关。"
+    },
+    {
+      "id": "2607.13594",
+      "relevant": true,
+      "score": 0.7,
+      "reason_zh": "Safety Sentry上下文感知agent安全路由，直接涉及agent安全控制。"
+    },
+    {
+      "id": "2607.13608",
+      "relevant": true,
+      "score": 0.6,
+      "reason_zh": "MEDA系统用LLM agent自动发现ODE，涉及科学发现agent，可迁移至自动代码优化。"
+    },
+    {
+      "id": "2607.13618",
+      "relevant": true,
+      "score": 0.75,
+      "reason_zh": "提出STOCKTAKE基准，分离状态估计与行动决策，对评估agent性能有通用方法贡献。"
+    },
+    {
+      "id": "2607.13621",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "聚焦具身跟随与寻找，是垂直应用，无通用agent方法贡献。"
+    },
+    {
+      "id": "2607.13655",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "针对RL agent可解释性，使用ILP，但与自动代码优化或coding agent无关。"
+    },
+    {
+      "id": "2607.13679",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "研究开源项目中bot采用的社会组织影响，非agent技术方法。"
+    },
+    {
+      "id": "2607.13716",
+      "relevant": true,
+      "score": 0.6,
+      "reason_zh": "提出CAVA框架规范agent动作验证与治理，对agent系统构建有通用启发。"
+    },
+    {
+      "id": "2607.13884",
+      "relevant": true,
+      "score": 0.85,
+      "reason_zh": "提出经验记忆图（EMG），通过图匹配实现agent一次性错误修正，是通用agent改进方法。"
+    },
+    {
+      "id": "2607.13899",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "关注数学推理模型可解释性挑战，非agent方法。"
+    },
+    {
+      "id": "2607.13940",
+      "relevant": true,
+      "score": 0.7,
+      "reason_zh": "设计自演化个人健康管理agent，包含记忆更新与归纳，可迁移至一般agent架构。"
+    },
+    {
+      "id": "2607.14004",
+      "relevant": true,
+      "score": 0.9,
+      "reason_zh": "研究agent优化器复合效果，用持续学习评估，直接相关自动代码优化agent的优化方法。"
+    },
+    {
+      "id": "2607.14044",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "框架用于职业技能提升，非agent方法，无通用贡献。"
+    },
+    {
+      "id": "2607.14046",
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "教育领域垂直应用RAG框架，无通用agent方法贡献。"
+    },
+    {
+      "id": "2607.14049",
+      "relevant": true,
+      "score": 0.5,
+      "reason_zh": "提出Deep Interaction方法干预推理错误，虽非直接agent，但对agent交互纠正有启发。"
+    }
+  ]
+}
