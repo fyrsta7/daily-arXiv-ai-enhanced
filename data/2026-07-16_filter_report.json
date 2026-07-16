@@ -5,205 +5,205 @@
   "input_total": 50,
   "cs.SE_kept": 18,
   "cs.AI_candidates": 32,
-  "cs.AI_kept": 17,
-  "output_total": 35,
+  "cs.AI_kept": 15,
+  "output_total": 33,
   "filter_usage": {
     "prompt_tokens": 10307,
-    "completion_tokens": 4926,
-    "total_tokens": 15233
+    "completion_tokens": 2885,
+    "total_tokens": 13192
   },
   "cs.AI_decisions": [
     {
       "id": "2607.13037",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "数据溯源和删除，非agent相关"
+      "reason_zh": "数据溯源系统，与LLM agent或代码优化无关。"
     },
     {
       "id": "2607.13049",
       "relevant": true,
-      "score": 0.7,
-      "reason_zh": "多agent调试和部署框架，可迁移到coding agent"
+      "score": 0.6,
+      "reason_zh": "多agent编排框架用于机器人调试，通用agent工作流有迁移潜力。"
     },
     {
       "id": "2607.13069",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "CoT推理审计，非agent方法"
+      "reason_zh": "CoT推理审计方法，非agent相关。"
     },
     {
       "id": "2607.13073",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "神经符号AGI概率扩展，不涉及agent架构或方法"
+      "reason_zh": "概率神经符号AI理论，无agent或代码优化直接联系。"
     },
     {
       "id": "2607.13104",
       "relevant": true,
       "score": 0.9,
-      "reason_zh": "自改进agent系统综述，直接相关"
+      "reason_zh": "自我改进agent系统综述，直接相关于agent自我改进方法。"
     },
     {
       "id": "2607.13115",
-      "relevant": true,
-      "score": 0.55,
-      "reason_zh": "agentic工具使用增强SLM，通用方法可迁移"
+      "relevant": false,
+      "score": 0.0,
+      "reason_zh": "分子性质预测，任务与agent或代码优化无关。"
     },
     {
       "id": "2607.13157",
       "relevant": true,
-      "score": 0.85,
-      "reason_zh": "长程agent记忆系统，对agent设计有直接贡献"
+      "score": 0.8,
+      "reason_zh": "长程agent记忆系统，对agent记忆架构有直接参考价值。"
     },
     {
       "id": "2607.13172",
       "relevant": true,
-      "score": 0.6,
-      "reason_zh": "基于人类偏好和世界模型的安全agent训练，通用RL方法"
+      "score": 0.7,
+      "reason_zh": "从人类偏好学习安全agent行为，通用agent训练方法。"
     },
     {
       "id": "2607.13219",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "解谜算法包，非agent"
+      "reason_zh": "解谜题算法，不是agent系统。"
     },
     {
       "id": "2607.13220",
       "relevant": true,
-      "score": 0.65,
-      "reason_zh": "多用户-多agent协作科学平台，涉及agent路由和上下文共享"
+      "score": 0.6,
+      "reason_zh": "多用户agent协作科学平台，涉及共享上下文与路由，通用架构。"
     },
     {
       "id": "2607.13230",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "agentic AI保险框架，非agent方法"
+      "reason_zh": "AI保险框架，非agent方法。"
     },
     {
       "id": "2607.13239",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "模型部署优化，不涉及agent"
+      "reason_zh": "模型部署组合优化，非agent。"
     },
     {
       "id": "2607.13292",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "理论级自动形式化，非agent相关"
+      "reason_zh": "自动形式化理论，与agent无关。"
     },
     {
       "id": "2607.13344",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "CASP框架，不是agent"
+      "reason_zh": "约束求解框架，不是agent。"
     },
     {
       "id": "2607.13501",
       "relevant": true,
-      "score": 0.75,
-      "reason_zh": "多轮搜索agent的自我过程奖励方法，可迁移"
+      "score": 0.85,
+      "reason_zh": "多轮搜索agent的自我过程监督方法，直接相关于agent推理优化。"
     },
     {
       "id": "2607.13548",
       "relevant": true,
-      "score": 0.7,
-      "reason_zh": "多agent RCA管道及推理失败分析，对agent通用方法有启发"
+      "score": 0.8,
+      "reason_zh": "多agent RCA管道，包含逆向推理agent，通用agent调试方法。"
     },
     {
       "id": "2607.13558",
       "relevant": true,
-      "score": 0.65,
-      "reason_zh": "多agent协作推理与工具增强，通用多agent方法"
+      "score": 0.7,
+      "reason_zh": "多agent协作推理框架，工具增强与强化学习，可迁移至代码优化。"
     },
     {
       "id": "2607.13562",
       "relevant": false,
       "score": 0.0,
-      "reason_zh": "人类与AI建议的心理实验，非agent方法"
+      "reason_zh": "人类判断心理实验，非agent方法。"
     },
     {
       "id": "2607.13594",
       "relevant": true,
       "score": 0.8,
-      "reason_zh": "LLM agent安全路由机制，直接涉及agent安全控制"
+      "reason_zh": "LLM agent安全三路路由，通用agent安全控制机制。"
     },
     {
       "id": "2607.13608",
       "relevant": true,
-      "score": 0.65,
-      "reason_zh": "LLM agent自动发现ODE，通用科学发现agent框架"
+      "score": 0.7,
+      "reason_zh": "LLM agent驱动科学发现，包含检索与推理流程，通用方法可迁移。"
     },
     {
       "id": "2607.13618",
       "relevant": true,
       "score": 0.7,
-      "reason_zh": "提出LLM agent公平oracle评估框架，区分感知与行动差距，可迁移到agent评测设计。"
+      "reason_zh": "提出区分感知与行动差距的agent评估框架，对agent调试和优化有启发。"
     },
     {
       "id": "2607.13621",
       "relevant": false,
-      "score": 0.2,
-      "reason_zh": "具身寻人跟随benchmark，与代码优化agent无直接关联，通用方法贡献有限。"
+      "score": 0.4,
+      "reason_zh": "具身搜索跟随benchmark，与编程agent及通用agent方法关联弱。"
     },
     {
       "id": "2607.13655",
       "relevant": false,
-      "score": 0.3,
-      "reason_zh": "用ILP解释RL策略，非agent新方法，与代码优化或coding agent不相关。"
+      "score": 0.4,
+      "reason_zh": "RL可解释性，非LLM agent范畴，与代码优化无关。"
     },
     {
       "id": "2607.13679",
       "relevant": false,
-      "score": 0.1,
-      "reason_zh": "研究开源项目中bot采用的社会效应，非agent技术方法。"
+      "score": 0.3,
+      "reason_zh": "社交组织分析，非agent技术方法。"
     },
     {
       "id": "2607.13716",
       "relevant": true,
       "score": 0.6,
-      "reason_zh": "提出agentic AI系统运行时治理与动作规范化，对agent安全与控制有启发。"
+      "reason_zh": "提出agent动作规范化和治理框架，可用于保障agent执行可靠性。"
     },
     {
       "id": "2607.13884",
       "relevant": true,
-      "score": 0.85,
-      "reason_zh": "提出经验记忆图实现单次错误纠正，涉及agent记忆与跨任务泛化，直接相关agent方法。"
+      "score": 0.75,
+      "reason_zh": "基于经验记忆图的单次错误修正，可迁移至代码agent失败恢复。"
     },
     {
       "id": "2607.13899",
       "relevant": false,
       "score": 0.2,
-      "reason_zh": "数学推理模型可解释性挑战，与agent或代码优化无关。"
+      "reason_zh": "数学推理模型可解释性竞赛，非agent。"
     },
     {
       "id": "2607.13940",
-      "relevant": true,
-      "score": 0.6,
-      "reason_zh": "自进化健康管理agent架构，分离安全规则与记忆，通用设计可迁移到其他agent。"
+      "relevant": false,
+      "score": 0.4,
+      "reason_zh": "健康管理垂直应用，通用agent方法贡献有限。"
     },
     {
       "id": "2607.14004",
       "relevant": true,
-      "score": 0.9,
-      "reason_zh": "直接研究agent优化器持续学习评估，比较多种优化方法，与SemOpt高度相关。"
+      "score": 0.85,
+      "reason_zh": "直接研究agent优化方法的持续累积效果，对评估优化策略稳定性极具价值。"
     },
     {
       "id": "2607.14044",
       "relevant": false,
-      "score": 0.1,
-      "reason_zh": "AI加速技能提升框架，非agent方法，应用垂直。"
+      "score": 0.2,
+      "reason_zh": "教育领域框架，无通用agent方法贡献。"
     },
     {
       "id": "2607.14046",
       "relevant": false,
-      "score": 0.1,
-      "reason_zh": "地震教育对话系统，垂直应用无通用agent贡献。"
+      "score": 0.2,
+      "reason_zh": "地震教育RAG系统，与通用agent或代码优化无关。"
     },
     {
       "id": "2607.14049",
       "relevant": true,
-      "score": 0.7,
-      "reason_zh": "提出深度交互方法纠正LLM推理错误，可迁移到coding agent的调试与修正。"
+      "score": 0.5,
+      "reason_zh": "提出编辑推理链的人机交互纠错方法，可作为一种agent纠错策略。"
     }
   ]
 }
