@@ -16,9 +16,11 @@ timestamp() {
 
 echo "[$(timestamp)] Checking whether today's Daily arXiv workflow already ran"
 
-# The fallback runs at 09:45 Asia/Shanghai (01:45 UTC). Only runs created after
-# 01:00 UTC belong to today's delivery window.
-cutoff="$(date -u '+%Y-%m-%dT01:00:00Z')"
+# The server is the only automatic trigger and runs at 09:30 Asia/Shanghai.
+# Calculate Beijing midnight in UTC so late legacy runs are still recognized as
+# belonging to the correct Beijing calendar day.
+local_date="$(TZ=Asia/Shanghai date '+%Y-%m-%d')"
+cutoff="$(date -u -d "${local_date} 00:00:00 +0800" '+%Y-%m-%dT%H:%M:%SZ')"
 runs="$($GH run list \
   --repo "$REPO" \
   --workflow "$WORKFLOW_ID" \

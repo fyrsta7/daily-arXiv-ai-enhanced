@@ -4,9 +4,6 @@
 name: arXiv-daily-ai-enhanced
 
 on:
-  schedule:
-    # GitHub schedules use UTC: 01:30 UTC is 09:30 in Asia/Shanghai.
-    - cron: "30 1 * * *"
   workflow_dispatch:
     inputs:
       send_email:
@@ -15,10 +12,57 @@ on:
         type: boolean
         default: true
 
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: daily-arxiv-delivery
+  cancel-in-progress: false
 
 jobs:
-  build:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.once_per_day.outputs.should_run }}
+    steps:
+    - name: Enforce one successful delivery per Beijing calendar day
+      id: once_per_day
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        if [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+          echo "Rejecting legacy non-dispatch event: ${{ github.event_name }}"
+          echo "should_run=false" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
 
+        local_date=$(TZ=Asia/Shanghai date +%F)
+        cutoff=$(date -u -d "${local_date} 00:00:00 +0800" +%Y-%m-%dT%H:%M:%SZ)
+        existing=$(gh api \
+          "repos/${GITHUB_REPOSITORY}/actions/workflows/311574107/runs?per_page=100" \
+          | jq -c \
+              --arg cutoff "$cutoff" \
+              --argjson current_run "${GITHUB_RUN_ID}" \
+              '[.workflow_runs[]
+                | select(.id != $current_run)
+                | select(.created_at >= $cutoff)
+                | select(.event == "schedule" or .event == "workflow_dispatch")
+                | select(.status == "completed" and .conclusion == "success")]
+               | sort_by(.created_at)
+               | last // empty')
+
+        if [ -n "$existing" ]; then
+          echo "A successful delivery run already exists for ${local_date}: ${existing}"
+          echo "should_run=false" >> "$GITHUB_OUTPUT"
+        else
+          echo "No successful delivery run exists for ${local_date}; continuing"
+          echo "should_run=true" >> "$GITHUB_OUTPUT"
+        fi
+
+  build:
+    needs: gate
+    if: needs.gate.outputs.should_run == 'true'
     runs-on: ubuntu-latest
 
     steps:
@@ -171,7 +215,7 @@ jobs:
         echo "Markdown转换完成 / Markdown conversion completed"
         
     - name: Send complete digest by email
-      if: steps.dedup_check.outputs.has_new_content == 'true' && (github.event_name == 'schedule' || inputs.send_email == true)
+      if: steps.dedup_check.outputs.has_new_content == 'true' && inputs.send_email == true
       env:
         SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         EMAIL_FROM: ${{ vars.EMAIL }}
@@ -188,7 +232,7 @@ jobs:
           --filter-report "data/${today}_filter_report.json"
 
     - name: Send no-new-content status email
-      if: steps.dedup_check.outputs.has_new_content == 'false' && (github.event_name == 'schedule' || inputs.send_email == true)
+      if: steps.dedup_check.outputs.has_new_content == 'false' && inputs.send_email == true
       env:
         SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         EMAIL_FROM: ${{ vars.EMAIL }}
