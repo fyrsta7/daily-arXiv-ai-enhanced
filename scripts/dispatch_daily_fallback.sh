@@ -6,7 +6,7 @@ export GH_CONFIG_DIR=/home/zyw/.config/gh
 export PATH=/usr/local/bin:/usr/bin:/bin
 
 readonly REPO="fyrsta7/daily-arXiv-ai-enhanced"
-readonly WORKFLOW_ID="311574107"
+readonly WORKFLOW_ID="314783587"
 readonly GH="/usr/bin/gh"
 readonly JQ="/usr/bin/jq"
 
@@ -23,13 +23,13 @@ local_date="$(TZ=Asia/Shanghai date '+%Y-%m-%d')"
 cutoff="$(date -u -d "${local_date} 00:00:00 +0800" '+%Y-%m-%dT%H:%M:%SZ')"
 runs="$($GH run list \
   --repo "$REPO" \
-  --workflow "$WORKFLOW_ID" \
-  --limit 20 \
-  --json databaseId,event,status,conclusion,createdAt,url)"
+  --limit 100 \
+  --json databaseId,name,event,status,conclusion,createdAt,url)"
 
 existing="$($JQ -r --arg cutoff "$cutoff" '
   map(
     select(.createdAt >= $cutoff)
+    | select(.name == "arXiv-daily-ai-enhanced" or .name == "arXiv-daily-email")
     | select(.event == "schedule" or .event == "workflow_dispatch")
     | select(.status != "completed" or .conclusion == "success")
   )
