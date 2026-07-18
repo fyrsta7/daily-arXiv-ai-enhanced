@@ -66,9 +66,40 @@ def call_filter(batch, model, base_url, api_key):
             decisions = parsed["decisions"]
             expected = {paper["id"] for paper in papers}
             returned = [decision["id"] for decision in decisions]
-            if set(returned) != expected or len(returned) != len(expected):
-                raise ValueError(f"Filter returned mismatched ids: expected={expected}, returned={returned}")
-            return decisions, body.get("usage", {})
+            returned_set = set(returned)
+            unexpected = returned_set - expected
+            duplicates = len(returned) != len(returned_set)
+            if unexpected or duplicates:
+                raise ValueError(
+                    "Filter returned unexpected or duplicate ids: "
+                    f"expected={expected}, returned={returned}"
+                )
+
+            usage = {
+                key: int(body.get("usage", {}).get(key, 0) or 0)
+                for key in ("prompt_tokens", "completion_tokens", "total_tokens")
+            }
+            missing = expected - returned_set
+            if missing:
+                if len(batch) == 1:
+                    raise ValueError(
+                        f"Filter omitted singleton id after response: {next(iter(missing))}"
+                    )
+                print(
+                    f"Filter omitted {len(missing)} ids; retrying each omitted paper separately",
+                    flush=True,
+                )
+                for item in batch:
+                    if item["id"] not in missing:
+                        continue
+                    recovered, recovered_usage = call_filter(
+                        [item], model, base_url, api_key
+                    )
+                    decisions.extend(recovered)
+                    for key in usage:
+                        usage[key] += int(recovered_usage.get(key, 0) or 0)
+
+            return decisions, usage
         except Exception as exc:
             last_error = exc
             if attempt < 2:
