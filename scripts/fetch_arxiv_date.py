@@ -5,10 +5,15 @@ import argparse
 import json
 import os
 import re
+import sys
+import time
 from datetime import date
 from pathlib import Path
 
 import arxiv
+
+
+OUTER_RETRY_DELAYS = (15, 30, 60, 120)
 
 
 def parse_args():
@@ -51,25 +56,38 @@ def main():
         num_retries=3,
     )
 
-    items = []
-    seen_ids = set()
-    for paper in client.results(search):
-        arxiv_id = re.sub(r"v\d+$", "", paper.get_short_id())
-        if arxiv_id in seen_ids:
-            continue
-        seen_ids.add(arxiv_id)
-        items.append(
-            {
-                "id": arxiv_id,
-                "pdf": paper.pdf_url or f"https://arxiv.org/pdf/{arxiv_id}",
-                "abs": paper.entry_id or f"https://arxiv.org/abs/{arxiv_id}",
-                "authors": [author.name for author in paper.authors],
-                "title": paper.title,
-                "categories": list(paper.categories),
-                "comment": paper.comment,
-                "summary": paper.summary,
-            }
-        )
+    for attempt in range(len(OUTER_RETRY_DELAYS) + 1):
+        items = []
+        seen_ids = set()
+        try:
+            for paper in client.results(search):
+                arxiv_id = re.sub(r"v\d+$", "", paper.get_short_id())
+                if arxiv_id in seen_ids:
+                    continue
+                seen_ids.add(arxiv_id)
+                items.append(
+                    {
+                        "id": arxiv_id,
+                        "pdf": paper.pdf_url or f"https://arxiv.org/pdf/{arxiv_id}",
+                        "abs": paper.entry_id or f"https://arxiv.org/abs/{arxiv_id}",
+                        "authors": [author.name for author in paper.authors],
+                        "title": paper.title,
+                        "categories": list(paper.categories),
+                        "comment": paper.comment,
+                        "summary": paper.summary,
+                    }
+                )
+            break
+        except arxiv.HTTPError as error:
+            if attempt == len(OUTER_RETRY_DELAYS):
+                raise
+            delay = OUTER_RETRY_DELAYS[attempt]
+            print(
+                f"arXiv API request failed ({error}); retrying the full date "
+                f"in {delay} seconds",
+                file=sys.stderr,
+            )
+            time.sleep(delay)
 
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
