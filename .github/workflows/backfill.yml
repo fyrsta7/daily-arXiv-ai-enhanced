@@ -1,0 +1,188 @@
+name: arXiv-historical-backfill
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: First date to process (YYYY-MM-DD)
+        required: true
+        type: string
+      end_date:
+        description: Last date to process (YYYY-MM-DD)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      dates: ${{ steps.dates.outputs.dates }}
+    steps:
+    - name: Build inclusive date matrix
+      id: dates
+      env:
+        START_DATE: ${{ inputs.start_date }}
+        END_DATE: ${{ inputs.end_date }}
+      run: |
+        dates=$(python3 -c '
+        import json
+        import os
+        from datetime import date, timedelta
+        start = date.fromisoformat(os.environ["START_DATE"])
+        end = date.fromisoformat(os.environ["END_DATE"])
+        if end < start:
+            raise SystemExit("end_date must not precede start_date")
+        values = []
+        current = start
+        while current <= end:
+            values.append(current.isoformat())
+            current += timedelta(days=1)
+        if len(values) > 62:
+            raise SystemExit("Backfill range cannot exceed 62 days")
+        print(json.dumps(values))
+        ')
+        echo "dates=$dates" >> "$GITHUB_OUTPUT"
+
+  process:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        date: ${{ fromJSON(needs.prepare.outputs.dates) }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Check whether date is already complete
+      id: existing
+      env:
+        TARGET_DATE: ${{ matrix.date }}
+        LANGUAGE: ${{ vars.LANGUAGE }}
+      run: |
+        git fetch origin data
+        complete=true
+        for path in \
+          "data/${TARGET_DATE}.jsonl" \
+          "data/${TARGET_DATE}_filter_report.json" \
+          "data/${TARGET_DATE}_AI_enhanced_${LANGUAGE}.jsonl" \
+          "data/${TARGET_DATE}.md"; do
+          if ! git cat-file -e "FETCH_HEAD:${path}" 2>/dev/null; then
+            complete=false
+          fi
+        done
+        echo "complete=$complete" >> "$GITHUB_OUTPUT"
+        echo "${TARGET_DATE}: existing complete result = ${complete}"
+
+    - name: Install dependencies
+      if: steps.existing.outputs.complete != 'true'
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        uv sync
+
+    - name: Fetch historical arXiv submissions
+      if: steps.existing.outputs.complete != 'true'
+      env:
+        CATEGORIES: ${{ vars.CATEGORIES }}
+      run: |
+        source .venv/bin/activate
+        python3 scripts/fetch_arxiv_date.py \
+          --date "${{ matrix.date }}" \
+          --output "data/${{ matrix.date }}.jsonl"
+
+    - name: Filter cs.AI papers
+      if: steps.existing.outputs.complete != 'true'
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+        MODEL_NAME: ${{ vars.MODEL_NAME }}
+      run: |
+        source .venv/bin/activate
+        python3 ai/filter_relevance.py \
+          --data "data/${{ matrix.date }}.jsonl" \
+          --report "data/${{ matrix.date }}_filter_report.json"
+
+    - name: Generate Chinese AI enhancement
+      if: steps.existing.outputs.complete != 'true'
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+        TOKEN_GITHUB: ${{ github.token }}
+        LANGUAGE: ${{ vars.LANGUAGE }}
+        MODEL_NAME: ${{ vars.MODEL_NAME }}
+      run: |
+        source .venv/bin/activate
+        if [ -s "data/${{ matrix.date }}.jsonl" ]; then
+          cd ai
+          python enhance.py \
+            --data "../data/${{ matrix.date }}.jsonl" \
+            --max_workers 1
+        else
+          : > "data/${{ matrix.date }}_AI_enhanced_${LANGUAGE}.jsonl"
+        fi
+
+    - name: Convert result to Markdown
+      if: steps.existing.outputs.complete != 'true'
+      env:
+        CATEGORIES: ${{ vars.CATEGORIES }}
+        LANGUAGE: ${{ vars.LANGUAGE }}
+      run: |
+        source .venv/bin/activate
+        cd to_md
+        python convert.py \
+          --data "../data/${{ matrix.date }}_AI_enhanced_${LANGUAGE}.jsonl"
+
+    - name: Upload processed date
+      if: steps.existing.outputs.complete != 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: backfill-${{ matrix.date }}
+        path: |
+          data/${{ matrix.date }}.jsonl
+          data/${{ matrix.date }}_filter_report.json
+          data/${{ matrix.date }}_AI_enhanced_${{ vars.LANGUAGE }}.jsonl
+          data/${{ matrix.date }}.md
+        if-no-files-found: error
+        retention-days: 7
+
+  publish:
+    needs: [prepare, process]
+    if: always() && needs.process.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: data
+        fetch-depth: 0
+    - name: Download newly processed dates
+      uses: actions/download-artifact@v4
+      with:
+        pattern: backfill-*
+        path: incoming
+        merge-multiple: true
+    - name: Merge results into data branch
+      run: |
+        mkdir -p data assets
+        if [ -d incoming ]; then
+          find incoming -maxdepth 1 -type f -exec cp -f {} data/ \;
+        fi
+        find data -maxdepth 1 -type f -name '*.jsonl' \
+          -printf '%f\n' | sort > assets/file-list.txt
+    - name: Commit and push backfill
+      env:
+        START_DATE: ${{ inputs.start_date }}
+        END_DATE: ${{ inputs.end_date }}
+        EMAIL: ${{ vars.EMAIL }}
+        NAME: ${{ vars.NAME }}
+      run: |
+        git config user.email "$EMAIL"
+        git config user.name "$NAME"
+        git add data assets/file-list.txt
+        if git diff --staged --quiet; then
+          echo "No new historical files to publish"
+        else
+          git commit -m "backfill: ${START_DATE} through ${END_DATE} arXiv papers"
+          git push origin data
+        fi
