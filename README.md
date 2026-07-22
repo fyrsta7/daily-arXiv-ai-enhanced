@@ -35,6 +35,10 @@ This innovative tool transforms how you stay updated with arXiv papers by combin
 
 👉 **[Try it now!](https://dw-dengwei.github.io/daily-arXiv-ai-enhanced/)** - No installation required
 
+## Personal research collections
+
+- [自动代码优化强相关论文精选](https://github.com/fyrsta7/daily-arXiv-ai-enhanced/blob/data/data/research/auto-code-optimization/README.md) — 以 SemOpt 为锚点，从已收录论文中进行严格的二次筛选。
+
 
 
 https://github.com/user-attachments/assets/b25712a4-fb8d-484f-863d-e8da6922f9d7
