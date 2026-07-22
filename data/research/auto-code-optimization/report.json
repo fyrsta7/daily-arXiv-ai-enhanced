@@ -1,0 +1,19 @@
+{
+  "model": "ds/deepseek-v4-flash",
+  "policy": "semopt_strong_relevance",
+  "threshold": 0.82,
+  "start_date": "2026-04-18",
+  "end_date": "2026-07-22",
+  "generated_at": "2026-07-22T17:30:31+00:00",
+  "date_files": 96,
+  "missing_dates": [],
+  "input_records": 7330,
+  "unique_papers": 7105,
+  "heuristic_candidates": 2247,
+  "selected_total": 76,
+  "filter_usage": {
+    "prompt_tokens": 1164885,
+    "completion_tokens": 340480,
+    "total_tokens": 1505365
+  }
+}
